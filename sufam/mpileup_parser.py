@@ -105,7 +105,7 @@ def run(bam, chrom, pos1, pos2, reffa, chr_reffa, parameters):
     # check bam ref type
     bam_header = subprocess.check_output("samtools view -H {}".format(bam), shell=True)
     is_chr_bam = bam_header.find('SN:chr') != -1
-    if is_chr_bam:
+    if is_chr_bam and chr_reffa is not None:
         reffa = chr_reffa
     if not is_chr_query and is_chr_bam:
         chrom = 'chr' + chrom
